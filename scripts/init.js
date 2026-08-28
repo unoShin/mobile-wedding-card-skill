@@ -276,36 +276,36 @@ async function promptInteractive() {
   const hasBgm = selectedNums.includes('9') || selectedNums.length === 0;
 
   console.log(`\n--- 🤵 신랑 정보 ---`);
-  const groomLastName = await ask(rl, `신랑 성 [신]: `, '신');
-  const groomFirstName = await ask(rl, `신랑 이름 [윤호]: `, '윤호');
+  const groomLastName = await ask(rl, `신랑 성 [김]: `, '김');
+  const groomFirstName = await ask(rl, `신랑 이름 [민우]: `, '민우');
   const groomPhone = await ask(rl, `신랑 연락처 [010-1234-5678]: `, '010-1234-5678');
-  const groomFather = await ask(rl, `신랑 아버지 성함 (없으면 빈칸): `, '');
-  const groomMother = await ask(rl, `신랑 어머니 성함 [이정희]: `, '이정희');
+  const groomFather = await ask(rl, `신랑 아버지 성함 [김영수]: `, '김영수');
+  const groomMother = await ask(rl, `신랑 어머니 성함 [박영희]: `, '박영희');
 
   console.log(`\n--- 👰 신부 정보 ---`);
   const brideLastName = await ask(rl, `신부 성 [이]: `, '이');
-  const brideFirstName = await ask(rl, `신부 이름 [다연]: `, '다연');
+  const brideFirstName = await ask(rl, `신부 이름 [지현]: `, '지현');
   const bridePhone = await ask(rl, `신부 연락처 [010-9876-5432]: `, '010-9876-5432');
-  const brideFather = await ask(rl, `신부 아버지 성함 [이주엽]: `, '이주엽');
-  const brideMother = await ask(rl, `신부 어머니 성함 [정현]: `, '정현');
+  const brideFather = await ask(rl, `신부 아버지 성함 [이진호]: `, '이진호');
+  const brideMother = await ask(rl, `신부 어머니 성함 [최선옥]: `, '최선옥');
 
   console.log(`\n--- 📅 예식 일시 및 장소 ---`);
   const weddingDateStr = await ask(rl, `예식 일시 (YYYY-MM-DD HH:mm) [2027-01-24 13:10]: `, '2027-01-24 13:10');
-  const weddingPlace = await ask(rl, `예식장 이름 [여의도 웨딩컨벤션 3층 그랜드블룸홀]: `, '여의도 웨딩컨벤션 3층 그랜드블룸홀');
+  const weddingPlace = await ask(rl, `예식장 이름 [웨딩컨벤션 3층 그랜드홀]: `, '웨딩컨벤션 3층 그랜드홀');
   const weddingAddress = await ask(rl, `예식장 도로명 주소 [서울특별시 영등포구 여의대로 14]: `, '서울특별시 영등포구 여의대로 14');
-  const weddingAddressDetail = await ask(rl, `상세 건물명 [KT여의도빌딩]: `, 'KT여의도빌딩');
+  const weddingAddressDetail = await ask(rl, `상세 건물명 [웨딩빌딩]: `, '웨딩빌딩');
 
-  let groomBank = '국민', groomAccNumber = '92011171041', groomAccOwner = `${groomLastName}${groomFirstName}`;
-  let brideBank = '농협', brideAccNumber = '3524966230793', brideAccOwner = `${brideLastName}${brideFirstName}`;
+  let groomBank = '국민', groomAccNumber = '110-123-456789', groomAccOwner = `${groomLastName}${groomFirstName}`;
+  let brideBank = '농협', brideAccNumber = '352-1234-5678-99', brideAccOwner = `${brideLastName}${brideFirstName}`;
 
   if (hasAccounts) {
     console.log(`\n--- 💳 축의금 계좌번호 ---`);
     groomBank = await ask(rl, `신랑측 은행명 [국민]: `, '국민');
-    groomAccNumber = await ask(rl, `신랑측 계좌번호 [92011171041]: `, '92011171041');
+    groomAccNumber = await ask(rl, `신랑측 계좌번호 [110-123-456789]: `, '110-123-456789');
     groomAccOwner = await ask(rl, `신랑측 예금주 [${groomLastName}${groomFirstName}]: `, `${groomLastName}${groomFirstName}`);
 
     brideBank = await ask(rl, `신부측 은행명 [농협]: `, '농협');
-    brideAccNumber = await ask(rl, `신부측 계좌번호 [3524966230793]: `, '3524966230793');
+    brideAccNumber = await ask(rl, `신부측 계좌번호 [352-1234-5678-99]: `, '352-1234-5678-99');
     brideAccOwner = await ask(rl, `신부측 예금주 [${brideLastName}${brideFirstName}]: `, `${brideLastName}${brideFirstName}`);
   }
 

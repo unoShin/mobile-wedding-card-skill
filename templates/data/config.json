@@ -3,18 +3,18 @@
   "rsvp_api_url": "https://script.google.com/macros/s/AKfycbyHQgh4q6knyze6yV1KJVb4L4i74B-NOfV5D0NJRGA7ny6W2kq9blY3La56VnPYRT3Qcw/exec",
   "kakao_app_key": "f6d7f2bb38649f6d4adb57e05621d326",
   "groom": {
-    "lastName": "신",
-    "firstName": "윤호",
+    "lastName": "김",
+    "firstName": "민우",
     "phoneNumber": "010-1234-5678",
-    "father": { "name": "", "phoneNumber": "" },
-    "mother": { "name": "이정희", "phoneNumber": "010-3333-4444" }
+    "father": { "name": "김영수", "phoneNumber": "010-2222-3333" },
+    "mother": { "name": "박영희", "phoneNumber": "010-3333-4444" }
   },
   "bride": {
     "lastName": "이",
-    "firstName": "다연",
+    "firstName": "지현",
     "phoneNumber": "010-9876-5432",
-    "father": { "name": "이주엽", "phoneNumber": "010-5555-6666" },
-    "mother": { "name": "정현", "deceased": false, "phoneNumber": "010-7777-8888" }
+    "father": { "name": "이진호", "phoneNumber": "010-5555-6666" },
+    "mother": { "name": "최선옥", "deceased": false, "phoneNumber": "010-7777-8888" }
   },
   "wedding": {
     "date": "2027-01-24T13:10:00+09:00",
@@ -25,12 +25,12 @@
   },
   "accounts": {
     "groom": [
-      { "relation": "신랑", "bank": "국민", "number": "92011171041", "owner": "신윤호" }
+      { "relation": "신랑", "bank": "국민", "number": "110-123-456789", "owner": "김민우" }
     ],
     "bride": [
-      { "relation": "신부", "bank": "농협", "number": "3524966230793", "owner": "이다연" },
-      { "relation": "아버지", "bank": "농협", "number": "17088852189579", "owner": "이주엽" },
-      { "relation": "어머니", "bank": "신한", "number": "110513017589", "owner": "정현" }
+      { "relation": "신부", "bank": "농협", "number": "352-1234-5678-99", "owner": "이지현" },
+      { "relation": "아버지", "bank": "농협", "number": "170-888-521895", "owner": "이진호" },
+      { "relation": "어머니", "bank": "신한", "number": "110-513-017589", "owner": "최선옥" }
     ]
   },
   "transport": [
@@ -47,7 +47,7 @@
     {
       "type": "car",
       "title": "자가용 & 주차 🚗",
-      "body": "내비게이션 검색: <b>'여의도웨딩컨벤션'</b>, <b>'여의도 KT'</b>, 또는 도로명 주소 <b>'여의대로 14'</b> 입력<br>(건물 지하 주차장, 2시간 무료)"
+      "body": "내비게이션 검색: <b>'여의도웨딩컨벤션'</b> 또는 도로명 주소 <b>'여의대로 14'</b> 입력<br>(건물 지하 주차장, 2시간 무료)"
     }
   ]
 }

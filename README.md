@@ -5,7 +5,7 @@
 
 <div align="center">
 
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-신윤호%20🤍%20이다연%20청첩장%20보기-ff69b4?style=for-the-badge&logo=google-chrome&logoColor=white)](https://unoshin.github.io/wedding-card/)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-샘플%20청첩장%20보기-ff69b4?style=for-the-badge&logo=google-chrome&logoColor=white)](https://unoshin.github.io/wedding-card/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](https://opensource.org/licenses/MIT)
 [![Zero Build](https://img.shields.io/badge/Zero--Build-Vanilla%20HTML%2FCSS%2FJS-orange?style=for-the-badge)]()
 
@@ -15,7 +15,7 @@
 
 ## 🌸 실제 동작 예시 (Live Demo)
 
-저희가 실제로 제작하고 배포한 **신윤호 🤍 이다연** 모바일 청첩장을 직접 확인해보세요!
+실제로 제작하고 배포된 **샘플 모바일 청첩장**을 직접 확인해보세요!
 
 👉 **[https://unoshin.github.io/wedding-card/](https://unoshin.github.io/wedding-card/)**
 

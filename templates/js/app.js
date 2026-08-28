@@ -805,38 +805,38 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function getInitialGuestbook() {
     return [
-      { name: "민우 & 지현", date: "6.14", message: "윤호야, 다연아! 결혼 진심으로 축하해! 평생 행복하고 예쁘게 살아라!! ♥" },
-      { name: "김부장님", date: "6.12", message: "윤호 대리 결혼을 축하하네. 인생의 새로운 2막을 응원하네. 행복이 가득하길." },
-      { name: "혜원 (플라워샵)", date: "6.10", message: "다연언니! 드디어 가네 ㅠㅠ 너무너무 축하해!! 당일에 세상에서 제일 예쁠 신부 기대할게!" }
+      { name: "친구 일동", date: "6.14", message: "결혼 진심으로 축하해! 평생 행복하고 예쁘게 잘 살아라!! ♥" },
+      { name: "직장 동료", date: "6.12", message: "두 분의 결혼을 진심으로 축하드립니다. 인생의 새로운 2막을 응원합니다. 늘 행복이 가득하길 바랍니다." },
+      { name: "혜원", date: "6.10", message: "언니! 너무너무 축하해!! 당일에 세상에서 제일 예쁠 신부 기대할게!" }
     ];
   }
 
   function getFallbackConfig() {
     return {
       "groom": {
-        "lastName": "신", "firstName": "윤호", "phoneNumber": "010-1234-5678",
-        "father": { "name": "신재근", "phoneNumber": "010-1111-2222" },
-        "mother": { "name": "이정희", "phoneNumber": "010-3333-4444" }
+        "lastName": "김", "firstName": "민우", "phoneNumber": "010-1234-5678",
+        "father": { "name": "김영수", "phoneNumber": "010-2222-3333" },
+        "mother": { "name": "박영희", "phoneNumber": "010-3333-4444" }
       },
       "bride": {
-        "lastName": "이", "firstName": "다연", "phoneNumber": "010-9876-5432",
-        "father": { "name": "아버님", "phoneNumber": "010-5555-6666" },
-        "mother": { "name": "어머님", "deceased": false, "phoneNumber": "010-7777-8888" }
+        "lastName": "이", "firstName": "지현", "phoneNumber": "010-9876-5432",
+        "father": { "name": "이진호", "phoneNumber": "010-5555-6666" },
+        "mother": { "name": "최선옥", "deceased": false, "phoneNumber": "010-7777-8888" }
       },
       "wedding": {
         "date": "2027-01-24T13:10:00+09:00",
-        "place": "여의도 웨딩컨벤션", "hall": "",
+        "place": "웨딩컨벤션 3층 그랜드홀", "hall": "",
         "address": "서울특별시 영등포구 여의대로 14"
       },
       "accounts": {
         "groom": [
-          { "relation": "신랑", "bank": "신한", "number": "111111111", "owner": "신윤호" },
-          { "relation": "어머니", "bank": "국민", "number": "222222222", "owner": "이정희" }
+          { "relation": "신랑", "bank": "국민", "number": "110-123-456789", "owner": "김민우" },
+          { "relation": "어머니", "bank": "신한", "number": "110-987-654321", "owner": "박영희" }
         ],
         "bride": [
-          { "relation": "신부", "bank": "신한", "number": "333333333", "owner": "이다연" },
-          { "relation": "아버지", "bank": "하나", "number": "4444444444", "owner": "이준호" },
-          { "relation": "어머니", "bank": "국민", "number": "555555555", "owner": "조은희" }
+          { "relation": "신부", "bank": "농협", "number": "352-1234-5678-99", "owner": "이지현" },
+          { "relation": "아버지", "bank": "우리", "number": "1002-123-456789", "owner": "이진호" },
+          { "relation": "어머니", "bank": "신한", "number": "110-555-777888", "owner": "최선옥" }
         ]
       },
       "transport": [
