@@ -115,34 +115,23 @@ Antigravity, Cursor, Claude Code, Windsurf 등 AI 코딩 비서에게 청첩장 
 
 ```mermaid
 flowchart TD
-    Step1["<div style='min-width: 650px; padding: 10px 14px; text-align: left;'><b>🌱 STEP 1. 프로젝트 맞춤 생성</b> &nbsp;│&nbsp; <code>npm run init ./my-wedding-card</code> ➔ <code>npm install</code><br/><span style='font-size: 13px; color: #555;'>대화형 질문으로 원하는 섹션(1~9) 선택 · 예비부부 성함/일정/계좌 입력 · 감성 컬러 테마 지정</span></div>"]
+    Step1["<div style='min-width: 680px; padding: 14px 18px; text-align: left; line-height: 1.6;'><div style='font-size: 15px; font-weight: bold; margin-bottom: 6px; color: #1a1a1a;'>🌱 STEP 1. 프로젝트 맞춤 생성 & 의존성 세팅</div><div style='margin-bottom: 6px;'><b>명령어:</b> <code>npm run init ./my-wedding-card</code> &nbsp;➔&nbsp; <code>cd ./my-wedding-card && npm install</code></div><div style='font-size: 13px; color: #4b5563;'>• <b>섹션 선택</b>: 캘린더, 갤러리, 지도, 계좌, RSVP, 방명록, 공유, 꽃잎, BGM 등 9개 항목 맞춤 선택<br/>• <b>정보 입력</b>: 예비부부 성함, 예식 일정 및 장소, 축의금 계좌번호, 3가지 감성 디자인 테마 지정<br/>• <b>환경 구성</b>: sharp 이미지 최적화 엔진 및 JSDOM 백화 방지 검증 라이브러리 자동 설치</div></div>"]
     
-    Step2["<div style='min-width: 650px; padding: 10px 14px; text-align: left;'><b>🎨 STEP 2. 사진 추가 & 커스텀</b> &nbsp;│&nbsp; <code>images/final/</code> ➔ <code>node optimize_images.js</code> ➔ <code>config.json</code><br/><span style='font-size: 13px; color: #555;'>웨딩 사진 배치 후 MozJPEG 초고화질 무손실 자동 압축 · 참석 여부(RSVP) 및 축하 방명록 구글 시트 연동</span></div>"]
+    Step2["<div style='min-width: 680px; padding: 14px 18px; text-align: left; line-height: 1.6;'><div style='font-size: 15px; font-weight: bold; margin-bottom: 6px; color: #1a1a1a;'>🎨 STEP 2. 사진 추가 & 고화질 압축 & 백엔드 연동</div><div style='margin-bottom: 6px;'><b>명령어:</b> <code>images/final/</code> &nbsp;➔&nbsp; <code>node optimize_images.js</code> &nbsp;➔&nbsp; <code>data/config.json</code></div><div style='font-size: 13px; color: #4b5563;'>• <b>사진 배치</b>: <code>images/final/</code> 폴더에 대표 사진(new_main.jpg) 및 갤러리 사진(01~15.jpg) 추가<br/>• <b>자동 압축</b>: MozJPEG 무손실 최적화로 화질 저하 없이 수 MB ➔ 수백 KB 자동 감량 (로딩 가속)<br/>• <b>구글 시트 연동</b>: Apps Script 배포 URL을 <code>config.json</code>에 입력하여 참석(RSVP) & 방명록 실시간 연결</div></div>"]
     
-    Step3["<div style='min-width: 650px; padding: 10px 14px; text-align: left;'><b>🚀 STEP 3. 무결성 검증 & 무료 배포</b> &nbsp;│&nbsp; <code>npm test</code> ➔ <code>./deploy.sh</code><br/><span style='font-size: 13px; color: #555;'>JSDOM 백화 현상 사전 검증으로 하객 접속 오류 차단 · GitHub Pages를 통한 영구 무료 호스팅 배포</span></div>"]
+    Step3["<div style='min-width: 680px; padding: 14px 18px; text-align: left; line-height: 1.6;'><div style='font-size: 15px; font-weight: bold; margin-bottom: 6px; color: #1a1a1a;'>🚀 STEP 3. 렌더링 무결성 검증 & GitHub 무료 배포</div><div style='margin-bottom: 6px;'><b>명령어:</b> <code>npm test</code> &nbsp;➔&nbsp; <code>./deploy.sh</code></div><div style='font-size: 13px; color: #4b5563;'>• <b>사전 검증</b>: JSDOM 기반 테스트로 백화 현상, 데이터 누락, JS 런타임 오류 배포 전 완벽 차단<br/>• <b>원클릭 배포</b>: GitHub Pages를 통해 전 세계 누구나 접속 가능한 웹사이트로 평생 무료 호스팅 완료<br/>• <b>하객 공유</b>: 카카오톡 메시지 카드 및 링크 복사로 지인들에게 완성된 모바일 청첩장 즉시 공유</div></div>"]
 
     Step1 ==> Step2 ==> Step3
 
     %% Custom High-Craft Wide Box Styling
-    classDef stepPink fill:#fff5f6,stroke:#d099a1,stroke-width:2px,color:#1f2937,rx:8px,ry:8px;
-    classDef stepGold fill:#fbf8f2,stroke:#c5a059,stroke-width:2px,color:#1f2937,rx:8px,ry:8px;
-    classDef stepBlue fill:#f4f8fb,stroke:#4a90e2,stroke-width:2px,color:#1f2937,rx:8px,ry:8px;
+    classDef stepPink fill:#fff5f6,stroke:#d099a1,stroke-width:2px,color:#1f2937,rx:10px,ry:10px;
+    classDef stepGold fill:#fbf8f2,stroke:#c5a059,stroke-width:2px,color:#1f2937,rx:10px,ry:10px;
+    classDef stepBlue fill:#f4f8fb,stroke:#4a90e2,stroke-width:2px,color:#1f2937,rx:10px,ry:10px;
 
     class Step1 stepPink;
     class Step2 stepGold;
     class Step3 stepBlue;
 ```
-
-<br/>
-
-| 단계 | 주요 작업 | 명령어 & 세부 설명 |
-| :--- | :--- | :--- |
-| **1. 프로젝트 초기화** | 대화형 질문으로 나만의 청첩장 생성 | `npm run init ./my-wedding-card`<br/>• 원하는 섹션(1~9), 부부 성함, 예식 일정, 테마 컬러 선택 |
-| **2. 패키지 설치** | 필수 도구 환경 구성 | `cd ./my-wedding-card && npm install`<br/>• sharp 이미지 최적화 도구 및 JSDOM 검증 라이브러리 설치 |
-| **3. 사진 추가 & 압축** | 고화질 사진을 웹에 최적화 | `node optimize_images.js`<br/>• `images/final/`에 사진 넣고 실행 시 초고화질 무손실 압축 자동 수행 |
-| **4. 백엔드 연동** | 참석 여부 및 방명록 구글 시트 연결 | `data/config.json`<br/>• [Google Apps Script 백엔드 연동 가이드](./references/backend-setup.md) 참조 URL 입력 |
-| **5. 품질 무결성 검증** | 배포 전 백화 현상 & 오류 자동 점검 | `npm test`<br/>• DOM 요소 누락, 스크립트 에러, 데이터 불일치 사전 차단 |
-| **6. 무료 호스팅 배포** | 전 세계 누구나 접속 가능한 웹사이트 배포 | `./deploy.sh`<br/>• GitHub Pages를 통해 클릭 한 번으로 평생 무료 배포 완료 |
 
 ---
 
