@@ -1,0 +1,34 @@
+{
+  "name": "mobile-wedding-card-skill",
+  "version": "1.0.0",
+  "description": "Universal AI Agent Skill & Interactive CLI Template for crafting mobile wedding cards",
+  "main": "scripts/init.js",
+  "bin": {
+    "mobile-wedding-card": "./bin/init.js",
+    "mwc": "./bin/init.js"
+  },
+  "scripts": {
+    "start": "node scripts/init.js",
+    "init": "node scripts/init.js",
+    "scaffold": "node scripts/scaffold.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/unoShin/mobile-wedding-card-skill.git"
+  },
+  "keywords": [
+    "wedding-card",
+    "mobile-invitation",
+    "ai-agent-skill",
+    "antigravity",
+    "cursor",
+    "claude-code",
+    "template"
+  ],
+  "author": "unoShin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/unoShin/mobile-wedding-card-skill/issues"
+  },
+  "homepage": "https://github.com/unoShin/mobile-wedding-card-skill#readme"
+}

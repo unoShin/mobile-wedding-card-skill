@@ -1,0 +1,467 @@
+/* Section Specific Styles */
+
+/* 1. Main Visual Section */
+.sec-main {
+  padding: 0;
+  overflow: hidden;
+  position: relative;
+  background-color: var(--theme-bg-default);
+}
+
+.main-image-container {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  position: relative;
+}
+
+.main-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.main-info {
+  padding: 20px 20px 25px 20px;
+  background-color: var(--theme-bg-default);
+}
+
+.main-names {
+  font-size: 1.5rem;
+  letter-spacing: 0.05em;
+  margin-bottom: 10px;
+}
+
+.main-names span {
+  font-size: 0.95rem;
+  color: var(--theme-text-muted);
+  margin: 0 5px;
+}
+
+.main-date-place {
+  font-size: 0.9rem;
+  font-weight: 300;
+  line-height: 1.8;
+  color: var(--theme-text-secondary);
+  border-top: 1px solid var(--theme-bg-default-line);
+  padding-top: 20px;
+  display: inline-block;
+  min-width: 200px;
+}
+
+/* 2. Greeting Section */
+.sec-greeting {
+  padding-top: 30px;
+}
+.greeting-poem {
+  margin: 40px 0;
+  line-height: 2.2;
+  font-family: var(--font-heading);
+  font-weight: 300;
+  font-size: 0.95rem;
+}
+
+.greeting-divider {
+  width: 30px;
+  height: 1px;
+  background-color: var(--theme-color-accent);
+  margin: 30px auto;
+}
+
+.greeting-names {
+  font-size: 1.05rem;
+  margin-top: 30px;
+  line-height: 2;
+}
+
+.greeting-names b {
+  font-weight: 400;
+}
+
+.greeting-names span {
+  font-size: 0.85rem;
+  color: var(--theme-text-muted);
+  margin: 0 4px;
+}
+
+/* 3. Family / Intro Parents Section */
+.parents-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+.parents-row-centered {
+  text-align: center;
+  font-size: 0.98rem;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.parents-relation-badge {
+  font-size: 0.82rem;
+  color: var(--theme-text-muted);
+  margin: 0 10px;
+  display: inline-block;
+}
+
+.parents-child-name {
+  font-weight: 400;
+}
+
+.deceased {
+  font-size: 0.75rem;
+  color: var(--theme-text-muted);
+  border: 1px solid var(--theme-bg-primary-line);
+  padding: 1px 4px;
+  border-radius: 3px;
+  margin-left: 4px;
+  vertical-align: middle;
+}
+
+/* 4. Contact Section */
+.contact-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+.contact-card {
+  padding: 15px;
+  border: 1px solid var(--theme-border-subtle);
+  border-radius: 6px;
+  background-color: var(--theme-bg-default);
+}
+
+.contact-card.groom-side h4 {
+  color: var(--theme-text-groom);
+}
+
+.contact-card.bride-side h4 {
+  color: var(--theme-text-bride);
+}
+
+.contact-card h4 {
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+  font-weight: 500;
+}
+
+.contact-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.contact-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  border-bottom: 1px solid var(--theme-bg-default-line);
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+}
+
+.contact-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+.contact-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.contact-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--theme-bg-primary);
+  border: 1px solid var(--theme-bg-default-line);
+  color: var(--theme-text-body);
+  text-decoration: none;
+  font-size: 0.8rem;
+  transition: all 0.2s;
+}
+
+.contact-btn:active {
+  background-color: #f0f0f0;
+}
+
+/* 5. Calendar Section */
+.calendar-wrapper {
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.calendar-header {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  margin-bottom: 25px;
+  letter-spacing: 0.05em;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  row-gap: 12px;
+  column-gap: 5px;
+  font-size: 0.85rem;
+}
+
+.cal-day-label {
+  font-weight: 500;
+  color: var(--theme-text-muted);
+  font-size: 0.8rem;
+  padding-bottom: 10px;
+}
+
+.cal-day-label:first-child {
+  color: var(--theme-cal-sunday-text);
+}
+
+.cal-date {
+  position: relative;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: default;
+  user-select: none;
+}
+
+.cal-date.sunday {
+  color: var(--theme-cal-sunday-text);
+}
+
+.cal-date.wedding-day {
+  background-color: var(--theme-cal-marker-bg);
+  color: #ffffff !important;
+  font-weight: bold;
+}
+
+/* 6. Countdown & Together Section */
+.countdown-box {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.countdown-item {
+  background-color: var(--theme-dday-bg);
+  border: 1px solid var(--theme-dday-border);
+  padding: 10px 15px;
+  border-radius: 6px;
+  min-width: 60px;
+}
+
+.countdown-num {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--theme-color-accent);
+  font-family: var(--font-eng);
+}
+
+.countdown-label {
+  font-size: 0.75rem;
+  color: var(--theme-text-muted);
+  margin-top: 2px;
+}
+
+.days-together {
+  font-size: 0.9rem;
+  color: var(--theme-text-secondary);
+  margin-top: 25px;
+  font-weight: 300;
+}
+
+/* 7. Gallery Section */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  padding: 0 4px;
+}
+
+.gallery-item {
+  aspect-ratio: 1;
+  overflow: hidden;
+  cursor: pointer;
+  background-color: var(--theme-bg-primary);
+  position: relative;
+}
+
+.gallery-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.gallery-item:hover .gallery-thumb {
+  transform: scale(1.05);
+}
+
+/* 8. Accounts Section */
+.accounts-container {
+  max-width: 340px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.account-item {
+  border-bottom: 1px solid var(--theme-bg-default-line);
+  padding: 15px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.account-item:last-child {
+  border-bottom: none;
+}
+
+.account-info {
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+.account-meta {
+  font-size: 0.8rem;
+  color: var(--theme-text-muted);
+  margin-bottom: 4px;
+}
+
+.account-number {
+  font-family: var(--font-eng);
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
+}
+
+.account-actions {
+  display: flex;
+  gap: 5px;
+}
+
+/* 9. Guestbook Section */
+.guestbook-list {
+  max-width: 340px;
+  margin: 30px auto 0 auto;
+  text-align: left;
+}
+
+.guestbook-item {
+  border-bottom: 1px solid var(--theme-bg-default-line);
+  padding: 15px 0;
+}
+
+.guestbook-item:last-child {
+  border-bottom: none;
+}
+
+.guestbook-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: var(--theme-text-muted);
+  margin-bottom: 5px;
+}
+
+.guestbook-name {
+  font-weight: 500;
+  color: var(--theme-text-body);
+}
+
+.guestbook-content {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+/* 10. Map & Transport */
+.map-placeholder {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background-color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--theme-bg-default-line);
+  border-radius: 6px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  position: relative;
+}
+
+.map-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.transport-list {
+  max-width: 340px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.transport-item {
+  margin-bottom: 20px;
+}
+
+.transport-item:last-child {
+  margin-bottom: 0;
+}
+
+.transport-title {
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 5px;
+  color: var(--theme-text-secondary);
+}
+
+.transport-body {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--theme-text-body);
+}
+
+.guide-tip {
+  display: block;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: var(--theme-text-muted);
+  background-color: var(--theme-color-accent-subtle);
+  padding: 10px 12px;
+  border-radius: 6px;
+  margin-top: 8px;
+  border-left: 3px solid var(--theme-color-accent);
+}
+
+/* 11. Footer Section */
+.footer-text {
+  font-size: 0.8rem;
+  color: var(--theme-text-muted);
+  line-height: 1.8;
+  padding: 40px 0;
+  background-color: var(--theme-bg-secondary);
+}

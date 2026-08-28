@@ -1,0 +1,221 @@
+/* Buttons */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  background-color: var(--theme-btn-primary-bg);
+  border: 1px solid var(--theme-btn-primary-border);
+  color: var(--theme-text-body);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.btn-primary:active {
+  background-color: #f0f0f0;
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  background-color: var(--theme-btn-secondary-bg);
+  border: 1px solid var(--theme-btn-secondary-border);
+  color: var(--theme-text-body);
+  font-size: 0.85rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+/* Modal / Popup Form */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-container {
+  width: 90%;
+  max-width: 380px;
+  background-color: var(--theme-bg-default);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+}
+
+.modal-overlay.active .modal-container {
+  transform: translateY(0);
+}
+
+.modal-header {
+  padding: 18px;
+  border-bottom: 1px solid var(--theme-bg-default-line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-title {
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--theme-text-muted);
+}
+
+.modal-body {
+  padding: 20px;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+.modal-footer {
+  padding: 15px 20px;
+  border-top: 1px solid var(--theme-bg-default-line);
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+/* Form inputs */
+.form-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.85rem;
+  margin-bottom: 5px;
+  color: var(--theme-text-body);
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--theme-bg-default-line);
+  border-radius: 4px;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.form-control:focus {
+  border-color: var(--theme-color-accent);
+}
+
+.form-row {
+  display: flex;
+  gap: 10px;
+}
+
+.form-check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+/* Accordion Toggle (For Accounts) */
+.accordion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background-color: var(--theme-bg-primary);
+  border: 1px solid var(--theme-bg-default-line);
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+  transition: background-color 0.2s;
+}
+
+.accordion-header:after {
+  content: '▼';
+  font-size: 0.75rem;
+  color: var(--theme-text-muted);
+  transition: transform 0.3s ease;
+}
+
+.accordion-item.active .accordion-header:after {
+  transform: rotate(180deg);
+}
+
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s cubic-bezier(0, 1, 0, 1);
+}
+
+.accordion-item.active .accordion-content {
+  max-height: 1000px;
+  transition: max-height 0.5s ease-in-out;
+}
+
+/* ───────────────────────────────────────────────────────────────
+   꽃잎 흩날림 효과 (Petals Falling Animation)
+   pointer-events: none 으로 클릭/터치 방해 없음
+──────────────────────────────────────────────────────────────── */
+.petals {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: var(--layout-max-width, 440px);
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 90;
+}
+
+.petal {
+  position: absolute;
+  top: 0;
+  border-radius: 100% 0 100% 0;
+  will-change: transform;
+  animation-name: petal-fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes petal-fall {
+  0% {
+    transform: translateY(-12vh) translateX(0) rotate(0deg);
+  }
+  100% {
+    transform: translateY(112vh) translateX(var(--drift, 0)) rotate(var(--spin, 360deg));
+  }
+}

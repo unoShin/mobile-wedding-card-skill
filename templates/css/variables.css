@@ -1,0 +1,62 @@
+:root {
+  /* Fonts */
+  --font-heading: 'Gowun Batang', 'Noto Serif KR', serif;
+  --font-body: 'Gowun Batang', 'Noto Serif KR', serif;
+  --font-eng: 'Cormorant Garamond', 'Inter', serif;
+
+  /* Theme Colors (Romantic Theme) */
+  --theme-text-body: #1a1a1a;
+  --theme-text-heading: #1a1a1a;
+  --theme-text-secondary: #ad868b;
+  --theme-text-tertiary: #ad868b;
+  --theme-text-countdown: #ad868b;
+  --theme-text-muted: #9a9a9a;
+  
+  --theme-color-accent: #d099a1;      /* Rose Pink Accent */
+  --theme-color-accent-subtle: #faf2f3;
+  --theme-text-groom: #23679f;        /* Groom Accent */
+  --theme-text-bride: #d08c95;        /* Bride Accent */
+  
+  /* Backgrounds */
+  --theme-bg-default: #ffffff;
+  --theme-bg-primary: #f9f9f9;
+  --theme-bg-secondary: #f8f5f3;      /* Warm Beige */
+  
+  /* Borders and Dividers */
+  --theme-bg-default-line: #eeeeee;
+  --theme-bg-primary-line: #d7d7d7;
+  --theme-bg-secondary-line: #d7d7d7;
+  --theme-border-timeline: #eaeaea;
+  --theme-border-divider: #eeeeee;
+  --theme-border-subtle: #ede6e7;
+  --theme-detail-border: #eeeeee;
+  
+  /* Buttons */
+  --theme-btn-primary-bg: #f9f9f9;
+  --theme-btn-primary-border: #eeeeee;
+  --theme-btn-secondary-bg: #ffffff;
+  --theme-btn-secondary-border: #eeeeee;
+  --theme-btn-contact-bg: #ffffff;
+  --theme-btn-contact-border: #eeeeee;
+  
+  /* Calendar */
+  --theme-cal-highlight-text: #ad868b;
+  --theme-cal-text: #1a1a1a;
+  --theme-cal-sunday-text: #d099a1;
+  --theme-cal-marker-bg: #dab1b6;
+  
+  /* D-Day & Accounts */
+  --theme-dday-bg: #faf8f8;
+  --theme-dday-border: #f2eeee;
+  --theme-location-bg: #ffffff;
+  --theme-location-border: #eeeeee;
+  --theme-account-button-bg: #ffffff;
+  --theme-account-button-border: #eeeeee;
+  --theme-account-content-bg: #ffffff;
+  --theme-account-content-border: #eeeeee;
+  --theme-account-copy-bg: #f9f9f9;
+  --theme-account-copy-border: #eeeeee;
+  
+  /* Layout Specs */
+  --layout-max-width: 440px;          /* Mobile optimized width */
+}
