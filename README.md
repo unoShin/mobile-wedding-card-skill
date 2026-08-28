@@ -113,42 +113,25 @@ Antigravity, Cursor, Claude Code, Windsurf 등 AI 코딩 비서에게 청첩장 
 
 ## 📋 제작 및 배포 워크플로우 (Production Workflow)
 
-<!-- STEP 1 -->
-<div style="background-color: #fff5f6; border: 2px solid #d099a1; border-radius: 12px; padding: 16px 20px; margin-bottom: 8px; color: #1f2937;">
-  <div style="font-size: 16px; font-weight: bold; margin-bottom: 6px; color: #1a1a1a;">🌱 STEP 1. 프로젝트 맞춤 생성 & 의존성 세팅</div>
-  <div style="margin-bottom: 8px;"><b>명령어:</b> <code>npm run init ./my-wedding-card</code> &nbsp;➔&nbsp; <code>cd ./my-wedding-card && npm install</code></div>
-  <div style="font-size: 13.5px; color: #4b5563; line-height: 1.6;">
-    • <b>섹션 선택</b>: 캘린더, 갤러리, 지도, 계좌, RSVP, 방명록, 공유, 꽃잎, BGM 등 9개 항목 맞춤 선택<br/>
-    • <b>정보 입력</b>: 예비부부 성함, 예식 일정 및 장소, 축의금 계좌번호, 3가지 감성 디자인 테마 지정<br/>
-    • <b>환경 구성</b>: sharp 이미지 최적화 엔진 및 JSDOM 백화 방지 검증 라이브러리 자동 설치
-  </div>
-</div>
+```mermaid
+flowchart TD
+    Step1["<div style='min-width: 680px; padding: 14px 18px; text-align: left; line-height: 1.6;'><div style='font-size: 15px; font-weight: bold; margin-bottom: 6px; color: #1a1a1a;'>🌱 STEP 1. 프로젝트 맞춤 생성 & 의존성 세팅</div><div style='margin-bottom: 6px;'><b>명령어:</b> <code>npm run init ./my-wedding-card</code> &nbsp;➔&nbsp; <code>cd ./my-wedding-card && npm install</code></div><div style='font-size: 13px; color: #4b5563;'>• <b>섹션 선택</b>: 캘린더, 갤러리, 지도, 계좌, RSVP, 방명록, 공유, 꽃잎, BGM 등 9개 항목 맞춤 선택<br/>• <b>정보 입력</b>: 예비부부 성함, 예식 일정 및 장소, 축의금 계좌번호, 3가지 감성 디자인 테마 지정<br/>• <b>환경 구성</b>: sharp 이미지 최적화 엔진 및 JSDOM 백화 방지 검증 라이브러리 자동 설치</div></div>"]
+    
+    Step2["<div style='min-width: 680px; padding: 14px 18px; text-align: left; line-height: 1.6;'><div style='font-size: 15px; font-weight: bold; margin-bottom: 6px; color: #1a1a1a;'>🎨 STEP 2. 사진 추가 & 고화질 압축 & 백엔드 연동</div><div style='margin-bottom: 6px;'><b>명령어:</b> <code>images/final/</code> &nbsp;➔&nbsp; <code>node optimize_images.js</code> &nbsp;➔&nbsp; <code>data/config.json</code></div><div style='font-size: 13px; color: #4b5563;'>• <b>사진 배치</b>: <code>images/final/</code> 폴더에 대표 사진(new_main.jpg) 및 갤러리 사진(01~15.jpg) 추가<br/>• <b>자동 압축</b>: MozJPEG 무손실 최적화로 화질 저하 없이 수 MB ➔ 수백 KB 자동 감량 (로딩 가속)<br/>• <b>구글 시트 연동</b>: Apps Script 배포 URL을 <code>config.json</code>에 입력하여 참석(RSVP) & 방명록 실시간 연결</div></div>"]
+    
+    Step3["<div style='min-width: 680px; padding: 14px 18px; text-align: left; line-height: 1.6;'><div style='font-size: 15px; font-weight: bold; margin-bottom: 6px; color: #1a1a1a;'>🚀 STEP 3. 렌더링 무결성 검증 & GitHub 무료 배포</div><div style='margin-bottom: 6px;'><b>명령어:</b> <code>npm test</code> &nbsp;➔&nbsp; <code>./deploy.sh</code></div><div style='font-size: 13px; color: #4b5563;'>• <b>사전 검증</b>: JSDOM 기반 테스트로 백화 현상, 데이터 누락, JS 런타임 오류 배포 전 완벽 차단<br/>• <b>원클릭 배포</b>: GitHub Pages를 통해 전 세계 누구나 접속 가능한 웹사이트로 평생 무료 호스팅 완료<br/>• <b>하객 공유</b>: 카카오톡 메시지 카드 및 링크 복사로 지인들에게 완성된 모바일 청첩장 즉시 공유</div></div>"]
 
-<div align="center" style="font-size: 18px; margin: 4px 0 8px 0;">⬇️</div>
+    Step1 ==> Step2 ==> Step3
 
-<!-- STEP 2 -->
-<div style="background-color: #fbf8f2; border: 2px solid #c5a059; border-radius: 12px; padding: 16px 20px; margin-bottom: 8px; color: #1f2937;">
-  <div style="font-size: 16px; font-weight: bold; margin-bottom: 6px; color: #1a1a1a;">🎨 STEP 2. 사진 추가 & 고화질 압축 & 백엔드 연동</div>
-  <div style="margin-bottom: 8px;"><b>명령어:</b> <code>images/final/</code> &nbsp;➔&nbsp; <code>node optimize_images.js</code> &nbsp;➔&nbsp; <code>data/config.json</code></div>
-  <div style="font-size: 13.5px; color: #4b5563; line-height: 1.6;">
-    • <b>사진 배치</b>: <code>images/final/</code> 폴더에 대표 사진(new_main.jpg) 및 갤러리 사진(01~15.jpg) 추가<br/>
-    • <b>자동 압축</b>: MozJPEG 무손실 최적화로 화질 저하 없이 수 MB ➔ 수백 KB 자동 감량 (로딩 가속)<br/>
-    • <b>구글 시트 연동</b>: Apps Script 배포 URL을 <code>config.json</code>에 입력하여 참석(RSVP) & 방명록 실시간 연결
-  </div>
-</div>
+    %% Custom High-Craft Wide Box Styling
+    classDef stepPink fill:#fff5f6,stroke:#d099a1,stroke-width:2px,color:#1f2937,rx:10px,ry:10px;
+    classDef stepGold fill:#fbf8f2,stroke:#c5a059,stroke-width:2px,color:#1f2937,rx:10px,ry:10px;
+    classDef stepBlue fill:#f4f8fb,stroke:#4a90e2,stroke-width:2px,color:#1f2937,rx:10px,ry:10px;
 
-<div align="center" style="font-size: 18px; margin: 4px 0 8px 0;">⬇️</div>
-
-<!-- STEP 3 -->
-<div style="background-color: #f4f8fb; border: 2px solid #4a90e2; border-radius: 12px; padding: 16px 20px; margin-bottom: 8px; color: #1f2937;">
-  <div style="font-size: 16px; font-weight: bold; margin-bottom: 6px; color: #1a1a1a;">🚀 STEP 3. 렌더링 무결성 검증 & GitHub 무료 배포</div>
-  <div style="margin-bottom: 8px;"><b>명령어:</b> <code>npm test</code> &nbsp;➔&nbsp; <code>./deploy.sh</code></div>
-  <div style="font-size: 13.5px; color: #4b5563; line-height: 1.6;">
-    • <b>사전 검증</b>: JSDOM 기반 테스트로 백화 현상, 데이터 누락, JS 런타임 오류 배포 전 완벽 차단<br/>
-    • <b>원클릭 배포</b>: GitHub Pages를 통해 전 세계 누구나 접속 가능한 웹사이트로 평생 무료 호스팅 완료<br/>
-    • <b>하객 공유</b>: 카카오톡 메시지 카드 및 링크 복사로 지인들에게 완성된 모바일 청첩장 즉시 공유
-  </div>
-</div>
+    class Step1 stepPink;
+    class Step2 stepGold;
+    class Step3 stepBlue;
+```
 
 ---
 
