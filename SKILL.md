@@ -31,6 +31,7 @@ If the user interacts in chat:
      - 💬 Guestbook Board
      - 🔗 Share Buttons
      - 🌸 Falling Petals Animation
+     - 🎵 Background Music (BGM Player)
    - **Groom & Bride**: Names, phone numbers, parents' names & deceased status.
    - **Wedding Schedule**: Date & time (e.g. `2027-01-24 13:10`), Venue name, Hall name, and Address.
    - **Bank Accounts**: (If accounts section is selected) Groom & bride side bank names, account numbers, and account holders.

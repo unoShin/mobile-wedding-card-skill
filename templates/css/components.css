@@ -219,3 +219,51 @@
     transform: translateY(112vh) translateX(var(--drift, 0)) rotate(var(--spin, 360deg));
   }
 }
+
+/* ───────────────────────────────────────────────────────────────
+   배경음악(BGM) 토글 버튼 (#bgm-toggle)
+──────────────────────────────────────────────────────────────── */
+#bgm-toggle {
+  position: fixed;
+  top: 16px;
+  right: calc(50% - var(--layout-max-width, 440px) / 2 + 16px);
+  z-index: 100;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--theme-bg-default-line);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  color: var(--theme-text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+#bgm-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.95);
+  transform: scale(1.05);
+}
+
+@media (max-width: 440px) {
+  #bgm-toggle {
+    right: 16px;
+  }
+}
+
+#bgm-toggle.bgm-playing {
+  background-color: var(--theme-color-accent-subtle);
+  border-color: var(--theme-color-accent);
+  color: var(--theme-color-accent);
+  animation: bgm-pulse 2s ease-in-out infinite;
+}
+
+@keyframes bgm-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}

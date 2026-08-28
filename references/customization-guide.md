@@ -83,3 +83,20 @@ You can customize the falling petals by adjusting parameters in `js/petals.js`:
   - Click left/right arrow buttons.
   - Touch swipe left/right gestures for mobile devices.
   - ESC key or background click to dismiss.
+
+---
+
+## 🎵 Background Music (BGM Player)
+
+To add background music to the wedding invitation:
+
+1. Place your audio file in the `audio/` directory (e.g. `audio/bgm.mp3` or `audio/bgm.m4a`).
+2. Set the audio path in `data/config.json`:
+   ```json
+   "bgm": "audio/bgm.mp3"
+   ```
+3. The floating `#bgm-toggle` button will automatically appear in the top-right corner.
+4. If `"bgm": ""` is left empty, the BGM toggle button remains hidden automatically.
+
+### Mobile Autoplay Handling
+Mobile browsers (Safari on iOS and Chrome on Android) strictly block unmuted autoplay without user gestures. `js/bgm.js` smoothly handles this by initiating playback on the user's first natural screen interaction (touch/scroll/click) and automatically pauses when switching background tabs (`visibilitychange`).

@@ -260,8 +260,9 @@ async function promptInteractive() {
   console.log(`  [6] 💬 축하 한마디 방명록 게시판 (Guestbook)`);
   console.log(`  [7] 🔗 청첩장 공유하기 (카카오톡/링크 복사)`);
   console.log(`  [8] 🌸 벚꽃/꽃잎 흩날림 애니메이션 효과 (Falling Petals)`);
+  console.log(`  [9] 🎵 배경음악(BGM) 오디오 플레이어 (Background Audio)`);
 
-  const sectionsInput = await ask(rl, `\n포함할 섹션 번호 입력 (쉼표 구분, 엔터 누르면 전체 선택) [1,2,3,4,5,6,7,8]: `, '1,2,3,4,5,6,7,8');
+  const sectionsInput = await ask(rl, `\n포함할 섹션 번호 입력 (쉼표 구분, 엔터 누르면 전체 선택) [1,2,3,4,5,6,7,8,9]: `, '1,2,3,4,5,6,7,8,9');
   const selectedNums = sectionsInput.split(/[,\s]+/).map(s => s.trim()).filter(Boolean);
 
   const hasCalendar = selectedNums.includes('1') || selectedNums.length === 0;
@@ -272,6 +273,7 @@ async function promptInteractive() {
   const hasGuestbook = selectedNums.includes('6') || selectedNums.length === 0;
   const hasShare = selectedNums.includes('7') || selectedNums.length === 0;
   const hasPetals = selectedNums.includes('8') || selectedNums.length === 0;
+  const hasBgm = selectedNums.includes('9') || selectedNums.length === 0;
 
   console.log(`\n--- 🤵 신랑 정보 ---`);
   const groomLastName = await ask(rl, `신랑 성 [신]: `, '신');
@@ -307,6 +309,12 @@ async function promptInteractive() {
     brideAccOwner = await ask(rl, `신부측 예금주 [${brideLastName}${brideFirstName}]: `, `${brideLastName}${brideFirstName}`);
   }
 
+  let bgmSrc = '';
+  if (hasBgm) {
+    console.log(`\n--- 🎵 배경음악(BGM) 설정 ---`);
+    bgmSrc = await ask(rl, `배경음악 파일 경로 또는 URL [audio/bgm.mp3]: `, 'audio/bgm.mp3');
+  }
+
   console.log(`\n--- 🎨 디자인 & 컬러 테마 설정 ---`);
   console.log(`  1. Romantic Rose (로맨틱 로즈 핑크 - 기본)`);
   console.log(`  2. Classic Elegance (클래식 네이비 & 샴페인 골드)`);
@@ -336,6 +344,7 @@ async function promptInteractive() {
 
   // 2. Build Config Object
   const config = {
+    bgm: bgmSrc,
     rsvp_api_url: rsvpApiUrl || "https://script.google.com/macros/s/AKfycbyHQgh4q6knyze6yV1KJVb4L4i74B-NOfV5D0NJRGA7ny6W2kq9blY3La56VnPYRT3Qcw/exec",
     kakao_app_key: kakaoAppKey || "f6d7f2bb38649f6d4adb57e05621d326",
     groom: {
@@ -409,6 +418,10 @@ async function promptInteractive() {
     indexHtml = indexHtml.replace(/<meta property="og:title" content=".*?">/, `<meta property="og:title" content="${groomFirstName} 🤍 ${brideFirstName} 결혼합니다">`);
     
     // Selective section removal if disabled
+    if (!hasBgm) {
+      indexHtml = indexHtml.replace(/<!-- BGM Toggle Button[\s\S]*?<\/button>\s*/, '');
+      indexHtml = indexHtml.replace(/<script defer src="js\/bgm\.js"><\/script>\n?/, '');
+    }
     if (!hasCalendar) {
       indexHtml = indexHtml.replace(/<!-- 4\. Calendar & Countdown Section -->[\s\S]*?<\/section>/, '');
     }
@@ -440,11 +453,15 @@ async function promptInteractive() {
     fs.writeFileSync(indexPath, indexHtml, 'utf8');
   }
 
-  // Ensure images directories exist
+  // Ensure images and audio directories exist
   const imagesFinalDir = path.join(targetDir, 'images/final');
   const imagesOrgDir = path.join(targetDir, 'images/org');
+  const audioDir = path.join(targetDir, 'audio');
   fs.mkdirSync(imagesFinalDir, { recursive: true });
   fs.mkdirSync(imagesOrgDir, { recursive: true });
+  if (hasBgm) {
+    fs.mkdirSync(audioDir, { recursive: true });
+  }
 
   // Make deploy.sh executable
   const deployScript = path.join(targetDir, 'deploy.sh');
@@ -453,6 +470,7 @@ async function promptInteractive() {
   }
 
   const enabledSectionList = [
+    hasBgm && '🎵 배경음악(BGM)',
     hasCalendar && '📅 캘린더/D-Day',
     hasGallery && '🖼️ 사진 갤러리',
     hasMap && '🗺️ 오시는 길/지도',

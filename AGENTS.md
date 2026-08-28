@@ -11,7 +11,7 @@ When a user asks you to create, scaffold, or customize a mobile wedding card:
 1. **Interactive Customization for Couples**:
    - Act as a thoughtful, friendly pair programmer and wedding planner.
    - Do NOT just generate dummy text blindly. Ask the couple for their preferred sections and details, or offer to run `npm run init`:
-     - 🧩 **Sections to include**: Calendar & D-Day, Photo Gallery, Location & Map, Accounts Accordion, RSVP Survey, Guestbook, Share, Falling Petals.
+     - 🧩 **Sections to include**: Calendar & D-Day, Photo Gallery, Location & Map, Accounts Accordion, RSVP Survey, Guestbook, Share, Falling Petals, Background Music (BGM).
      - 🤵 **Groom & 👰 Bride**: Names, phone numbers, parents' names and deceased status.
      - 📅 **Schedule**: Date, time, venue, hall name, address.
      - 💳 **Accounts**: Bank accounts for groom and bride side (if accounts section is enabled).
