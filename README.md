@@ -115,22 +115,22 @@ Antigravity, Cursor, Claude Code, Windsurf 등 AI 코딩 비서에게 청첩장 
 
 ```mermaid
 flowchart TD
-    S1["<b>🌱 STEP 1. 프로젝트 맞춤 생성</b> &nbsp; <code>npm run init ./my-wedding-card</code> &nbsp;➔&nbsp; <code>npm install</code><br/><small>💍 대화형 질문으로 섹션(1~9) 선택 · 예비부부 성함/일정/계좌 입력 · 감성 컬러 테마 지정 및 프로젝트 세팅</small>"]
-    
-    S2["<b>🎨 STEP 2. 사진 추가 & 커스텀</b> &nbsp; <code>images/final/</code> &nbsp;➔&nbsp; <code>node optimize_images.js</code> &nbsp;➔&nbsp; <code>data/config.json</code><br/><small>🖼️ 웨딩 사진 배치 후 MozJPEG 초고화질 무손실 자동 압축 · 참석 여부(RSVP) 및 축하 방명록 구글 시트 연동</small>"]
-    
-    S3["<b>🚀 STEP 3. 무결성 검증 & 무료 배포</b> &nbsp; <code>npm test</code> &nbsp;➔&nbsp; <code>./deploy.sh</code><br/><small>🛡️ JSDOM 백화 현상 사전 검증으로 하객 접속 오류 완벽 차단 · GitHub Pages를 통한 영구 무료 호스팅 배포 완료</small>"]
+    A["💍 <b>1. 맞춤 프로젝트 생성</b> &nbsp;│&nbsp; <code>npm run init ./my-wedding-card</code> &nbsp;➔&nbsp; 섹션(1~9) 선택, 예비부부 정보 입력, 컬러 테마 지정"]
+    B["📦 <b>2. 의존성 패키지 설치</b> &nbsp;│&nbsp; <code>cd ./my-wedding-card && npm install</code> &nbsp;➔&nbsp; 이미지 압축 엔진 및 JSDOM 테스팅 환경 세팅"]
+    C["🖼️ <b>3. 웨딩 사진 폴더 배치</b> &nbsp;│&nbsp; <code>images/final/</code> &nbsp;➔&nbsp; 메인 대표 사진(new_main.jpg) 및 갤러리 사진(01~15.jpg) 넣기"]
+    D["⚡ <b>4. 고화질 사진 자동 압축</b> &nbsp;│&nbsp; <code>node optimize_images.js</code> &nbsp;➔&nbsp; MozJPEG 무손실 최적화로 모바일 로딩 속도 극대화"]
+    E["💌 <b>5. 구글 시트 백엔드 연동</b> &nbsp;│&nbsp; <code>data/config.json</code> &nbsp;➔&nbsp; 참석 여부(RSVP) 및 축하 방명록 Apps Script URL 연결"]
+    F["🛡️ <b>6. 렌더링 무결성 검증</b> &nbsp;│&nbsp; <code>npm test</code> &nbsp;➔&nbsp; JSDOM 기반 백화 현상 및 데이터 누락 사전 방지 테스트"]
+    G["🌸 <b>7. GitHub Pages 무료 배포</b> &nbsp;│&nbsp; <code>./deploy.sh</code> &nbsp;➔&nbsp; 평생 무료 호스팅 배포 완료 및 카카오톡 모바일 공유 시작"]
 
-    S1 ==> S2 ==> S3
+    A --> B --> C --> D --> E --> F --> G
 
-    %% Custom Wide Card Styling
-    classDef stepPink fill:#fff5f6,stroke:#d099a1,stroke-width:2px,color:#222,rx:8px,ry:8px;
-    classDef stepGold fill:#fbf8f2,stroke:#c5a059,stroke-width:2px,color:#222,rx:8px,ry:8px;
-    classDef stepBlue fill:#f4f8fb,stroke:#4a90e2,stroke-width:2px,color:#222,rx:8px,ry:8px;
+    classDef default fill:#ffffff,stroke:#e5e7eb,stroke-width:1.5px,color:#1f2937,rx:8px,ry:8px;
+    classDef startNode fill:#fff5f6,stroke:#d099a1,stroke-width:2px,color:#1f2937,rx:8px,ry:8px;
+    classDef endNode fill:#f0fdf4,stroke:#86efac,stroke-width:2px,color:#1f2937,rx:8px,ry:8px;
 
-    class S1 stepPink;
-    class S2 stepGold;
-    class S3 stepBlue;
+    class A startNode;
+    class G endNode;
 ```
 
 <br/>
