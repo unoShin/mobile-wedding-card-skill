@@ -198,10 +198,8 @@ function copyDirRecursive(src, dest) {
 
 function parseDateToISO(dateStr) {
   if (!dateStr) return '2027-01-24T13:10:00+09:00';
-  // If already ISO format
   if (dateStr.includes('T')) return dateStr;
   
-  // Format: YYYY-MM-DD HH:mm or YYYY.MM.DD HH:mm
   const cleaned = dateStr.replace(/\./g, '-').trim();
   const parts = cleaned.split(' ');
   const datePart = parts[0];
@@ -241,16 +239,39 @@ async function promptInteractive() {
   });
 
   console.log(`
-=====================================================
-  💍 모바일 청첩장 맞춤 제작 위저드 (Mobile Wedding Card)
-=====================================================
+======================================================================
+  💍 예비 신혼부부를 위한 모바일 청첩장 제작 위저드 (Mobile Wedding Card)
+======================================================================
 엔터(Enter)를 누르면 [기본값]이 자동으로 적용됩니다.
 `);
 
-  // Target directory
+  // 1. Target directory
   const defaultDir = process.argv[2] || './my-wedding-card';
   const targetDirInput = await ask(rl, `📁 생성할 프로젝트 경로 [${defaultDir}]: `, defaultDir);
   const targetDir = path.resolve(process.cwd(), targetDirInput);
+
+  // 2. Component/Section Selection Checkbox
+  console.log(`\n--- 🧩 청첩장에 포함할 구성요소(섹션)를 선택해 주세요 ---`);
+  console.log(`  [1] 📅 캘린더 & D-Day 실시간 카운트다운 (Calendar & Countdown)`);
+  console.log(`  [2] 🖼️ 사진 갤러리 & 풀스크린 라이트박스 (Photo Gallery)`);
+  console.log(`  [3] 🗺️ 오시는 길 & 지도/대중교통 안내 (Location & Map)`);
+  console.log(`  [4] 💳 마음 전하실 곳 (신랑/신부 축의금 계좌번호 아코디언)`);
+  console.log(`  [5] 💌 참석 여부 전달 (RSVP 팝업 설문)`);
+  console.log(`  [6] 💬 축하 한마디 방명록 게시판 (Guestbook)`);
+  console.log(`  [7] 🔗 청첩장 공유하기 (카카오톡/링크 복사)`);
+  console.log(`  [8] 🌸 벚꽃/꽃잎 흩날림 애니메이션 효과 (Falling Petals)`);
+
+  const sectionsInput = await ask(rl, `\n포함할 섹션 번호 입력 (쉼표 구분, 엔터 누르면 전체 선택) [1,2,3,4,5,6,7,8]: `, '1,2,3,4,5,6,7,8');
+  const selectedNums = sectionsInput.split(/[,\s]+/).map(s => s.trim()).filter(Boolean);
+
+  const hasCalendar = selectedNums.includes('1') || selectedNums.length === 0;
+  const hasGallery = selectedNums.includes('2') || selectedNums.length === 0;
+  const hasMap = selectedNums.includes('3') || selectedNums.length === 0;
+  const hasAccounts = selectedNums.includes('4') || selectedNums.length === 0;
+  const hasRsvp = selectedNums.includes('5') || selectedNums.length === 0;
+  const hasGuestbook = selectedNums.includes('6') || selectedNums.length === 0;
+  const hasShare = selectedNums.includes('7') || selectedNums.length === 0;
+  const hasPetals = selectedNums.includes('8') || selectedNums.length === 0;
 
   console.log(`\n--- 🤵 신랑 정보 ---`);
   const groomLastName = await ask(rl, `신랑 성 [신]: `, '신');
@@ -272,32 +293,43 @@ async function promptInteractive() {
   const weddingAddress = await ask(rl, `예식장 도로명 주소 [서울특별시 영등포구 여의대로 14]: `, '서울특별시 영등포구 여의대로 14');
   const weddingAddressDetail = await ask(rl, `상세 건물명 [KT여의도빌딩]: `, 'KT여의도빌딩');
 
-  console.log(`\n--- 💳 축의금 계좌번호 ---`);
-  const groomBank = await ask(rl, `신랑측 은행명 [국민]: `, '국민');
-  const groomAccNumber = await ask(rl, `신랑측 계좌번호 [92011171041]: `, '92011171041');
-  const groomAccOwner = await ask(rl, `신랑측 예금주 [${groomLastName}${groomFirstName}]: `, `${groomLastName}${groomFirstName}`);
+  let groomBank = '국민', groomAccNumber = '92011171041', groomAccOwner = `${groomLastName}${groomFirstName}`;
+  let brideBank = '농협', brideAccNumber = '3524966230793', brideAccOwner = `${brideLastName}${brideFirstName}`;
 
-  const brideBank = await ask(rl, `신부측 은행명 [농협]: `, '농협');
-  const brideAccNumber = await ask(rl, `신부측 계좌번호 [3524966230793]: `, '3524966230793');
-  const brideAccOwner = await ask(rl, `신부측 예금주 [${brideLastName}${brideFirstName}]: `, `${brideLastName}${brideFirstName}`);
+  if (hasAccounts) {
+    console.log(`\n--- 💳 축의금 계좌번호 ---`);
+    groomBank = await ask(rl, `신랑측 은행명 [국민]: `, '국민');
+    groomAccNumber = await ask(rl, `신랑측 계좌번호 [92011171041]: `, '92011171041');
+    groomAccOwner = await ask(rl, `신랑측 예금주 [${groomLastName}${groomFirstName}]: `, `${groomLastName}${groomFirstName}`);
 
-  console.log(`\n--- 🎨 디자인 & 효과 설정 ---`);
+    brideBank = await ask(rl, `신부측 은행명 [농협]: `, '농협');
+    brideAccNumber = await ask(rl, `신부측 계좌번호 [3524966230793]: `, '3524966230793');
+    brideAccOwner = await ask(rl, `신부측 예금주 [${brideLastName}${brideFirstName}]: `, `${brideLastName}${brideFirstName}`);
+  }
+
+  console.log(`\n--- 🎨 디자인 & 컬러 테마 설정 ---`);
   console.log(`  1. Romantic Rose (로맨틱 로즈 핑크 - 기본)`);
   console.log(`  2. Classic Elegance (클래식 네이비 & 샴페인 골드)`);
   console.log(`  3. Modern Pure (모던 미니멀 블랙 & 화이트)`);
   const themeChoice = await ask(rl, `컬러 테마 번호 선택 (1~3) [1]: `, '1');
   const selectedThemeKey = ['1', '2', '3'].includes(themeChoice) ? parseInt(themeChoice, 10) : 1;
 
-  const petalsAns = await ask(rl, `🌸 꽃잎 흩날림 애니메이션 효과를 켤까요? (Y/n) [Y]: `, 'Y');
-  const enablePetals = petalsAns.toLowerCase() !== 'n';
+  let rsvpApiUrl = '';
+  let kakaoAppKey = '';
 
-  console.log(`\n--- ⚙️ 외부 API 연동 (나중에 설정 가능) ---`);
-  const rsvpApiUrl = await ask(rl, `Google Apps Script URL (없으면 엔터): `, '');
-  const kakaoAppKey = await ask(rl, `카카오 JavaScript 앱 키 (없으면 엔터): `, '');
+  if (hasRsvp || hasGuestbook || hasShare) {
+    console.log(`\n--- ⚙️ 외부 API 연동 (나중에 설정 가능) ---`);
+    if (hasRsvp || hasGuestbook) {
+      rsvpApiUrl = await ask(rl, `Google Apps Script URL (없으면 엔터): `, '');
+    }
+    if (hasShare) {
+      kakaoAppKey = await ask(rl, `카카오 JavaScript 앱 키 (없으면 엔터): `, '');
+    }
+  }
 
   try { rl.close(); } catch (e) {}
 
-  console.log(`\n⚙️ 청첩장 프로젝트 생성 중...`);
+  console.log(`\n⚙️ 선택하신 구성으로 맞춤 청첩장 프로젝트 생성 중...`);
 
   // 1. Copy Template Files
   copyDirRecursive(templateDir, targetDir);
@@ -369,15 +401,42 @@ async function promptInteractive() {
     }
   }
 
-  // Handle petals toggle in index.html
+  // Handle section assembly in index.html
   const indexPath = path.join(targetDir, 'index.html');
   if (fs.existsSync(indexPath)) {
     let indexHtml = fs.readFileSync(indexPath, 'utf8');
     indexHtml = indexHtml.replace(/<title>.*?<\/title>/, `<title>${groomFirstName} 🤍 ${brideFirstName} 결혼합니다</title>`);
     indexHtml = indexHtml.replace(/<meta property="og:title" content=".*?">/, `<meta property="og:title" content="${groomFirstName} 🤍 ${brideFirstName} 결혼합니다">`);
-    if (!enablePetals) {
+    
+    // Selective section removal if disabled
+    if (!hasCalendar) {
+      indexHtml = indexHtml.replace(/<!-- 4\. Calendar & Countdown Section -->[\s\S]*?<\/section>/, '');
+    }
+    if (!hasGallery) {
+      indexHtml = indexHtml.replace(/<!-- 5\. Gallery Section -->[\s\S]*?<\/section>/, '');
+      indexHtml = indexHtml.replace(/<!-- Lightbox Gallery Modal -->[\s\S]*?<\/div>\s*<\/div>/, '');
+    }
+    if (!hasMap) {
+      indexHtml = indexHtml.replace(/<!-- 6\. Map & Way to come -->[\s\S]*?<\/section>/, '');
+    }
+    if (!hasAccounts) {
+      indexHtml = indexHtml.replace(/<!-- 7\. Accounts Section[\s\S]*?<\/section>/, '');
+    }
+    if (!hasRsvp) {
+      indexHtml = indexHtml.replace(/<!-- 8\. RSVP Section[\s\S]*?<\/section>/, '');
+      indexHtml = indexHtml.replace(/<!-- RSVP Modal -->[\s\S]*?<\/div>\s*<\/div>/, '');
+    }
+    if (!hasGuestbook) {
+      indexHtml = indexHtml.replace(/<!-- 9\. Guestbook Section -->[\s\S]*?<\/section>/, '');
+      indexHtml = indexHtml.replace(/<!-- Guestbook Write Modal -->[\s\S]*?<\/div>\s*<\/div>/, '');
+    }
+    if (!hasShare) {
+      indexHtml = indexHtml.replace(/<!-- 10\. Share Section -->[\s\S]*?<\/section>/, '');
+    }
+    if (!hasPetals) {
       indexHtml = indexHtml.replace(/<script defer src="js\/petals\.js"><\/script>\n?/, '');
     }
+
     fs.writeFileSync(indexPath, indexHtml, 'utf8');
   }
 
@@ -393,13 +452,24 @@ async function promptInteractive() {
     try { fs.chmodSync(deployScript, '755'); } catch (e) {}
   }
 
+  const enabledSectionList = [
+    hasCalendar && '📅 캘린더/D-Day',
+    hasGallery && '🖼️ 사진 갤러리',
+    hasMap && '🗺️ 오시는 길/지도',
+    hasAccounts && '💳 축의금 계좌',
+    hasRsvp && '💌 참석여부(RSVP)',
+    hasGuestbook && '💬 축하 방명록',
+    hasShare && '🔗 공유하기',
+    hasPetals && '🌸 꽃잎 애니메이션'
+  ].filter(Boolean).join(', ');
+
   console.log(`
-=====================================================
-  ✨ ${groomLastName}${groomFirstName} 🤍 ${brideLastName}${brideFirstName} 모바일 청첩장이 생성되었습니다!
-=====================================================
+======================================================================
+  ✨ ${groomLastName}${groomFirstName} 🤍 ${brideLastName}${brideFirstName} 예비부부님의 모바일 청첩장이 생성되었습니다!
+======================================================================
 📂 프로젝트 경로: ${targetDir}
 🎨 선택된 테마: ${THEMES[selectedThemeKey].name}
-🌸 꽃잎 애니메이션: ${enablePetals ? '활성화' : '비활성화'}
+🧩 활성화된 섹션: ${enabledSectionList}
 
 🚀 다음 진행 단계:
   1. cd ${path.relative(process.cwd(), targetDir) || '.'}

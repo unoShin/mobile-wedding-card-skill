@@ -147,26 +147,28 @@ setTimeout(() => {
       throw new Error('BLANK PAGE DETECTED: Main text elements are empty or undefined!');
     }
 
-    if (groomName !== '윤호' || brideName !== '다연') {
-      throw new Error(`DATA MISMATCH: Expected '윤호' / '다연' but got '${groomName}' / '${brideName}'`);
+    const expectedConfig = JSON.parse(configJsonContent);
+    if (groomName !== expectedConfig.groom.firstName || brideName !== expectedConfig.bride.firstName) {
+      throw new Error(`DATA MISMATCH: Expected '${expectedConfig.groom.firstName}' / '${expectedConfig.bride.firstName}' but got '${groomName}' / '${brideName}'`);
     }
 
-    if (!placeText.includes('여의도 웨딩컨벤션')) {
+    if (!placeText.includes(expectedConfig.wedding.place)) {
       throw new Error(`DATA MISMATCH: Venue is incorrect. Got "${placeText}"`);
     }
 
     // Verify parents layout rendered dynamically
     const parentsContainer = document.getElementById('greeting-parents-container');
-    if (!parentsContainer || !parentsContainer.innerHTML.trim()) {
+    if (parentsContainer && !parentsContainer.innerHTML.trim()) {
       throw new Error('BLANK SECTION DETECTED: greeting-parents-container is empty!');
     }
-    console.log(`[Verify] Parents Container HTML: ${parentsContainer.innerHTML.trim()}`);
 
-    // Verify accounts accordion contents
+    // Verify accounts accordion contents if accounts section exists
     const groomAccounts = document.getElementById('groom-accounts-list');
     const brideAccounts = document.getElementById('bride-accounts-list');
-    if (!groomAccounts || !groomAccounts.innerHTML.trim() || !brideAccounts || !brideAccounts.innerHTML.trim()) {
-      throw new Error('BLANK SECTION DETECTED: Accounts list is empty!');
+    if (groomAccounts && brideAccounts) {
+      if (!groomAccounts.innerHTML.trim() || !brideAccounts.innerHTML.trim()) {
+        throw new Error('BLANK SECTION DETECTED: Accounts list is empty!');
+      }
     }
 
     // Verify petals animation container

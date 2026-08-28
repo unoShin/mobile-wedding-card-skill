@@ -584,10 +584,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Gallery More Toggle
-    document.getElementById('btn-gallery-more').addEventListener('click', () => {
-      galleryShowingAll = !galleryShowingAll;
-      renderGallery();
-    });
+    const moreBtn = document.getElementById('btn-gallery-more');
+    if (moreBtn) {
+      moreBtn.addEventListener('click', () => {
+        galleryShowingAll = !galleryShowingAll;
+        renderGallery();
+      });
+    }
 
     // Accordions
     setupAccordion('acc-groom-accordion');
@@ -602,44 +605,50 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Copy Address Button
-    if (configData) {
+    if (configData && configData.wedding && configData.wedding.address) {
       setupCopyButton('#btn-copy-address', configData.wedding.address, '주소가 복사되었습니다.');
     }
 
     // Lightbox Controls
-    document.getElementById('btn-lightbox-close').addEventListener('click', closeLightbox);
-    document.getElementById('btn-lightbox-prev').addEventListener('click', prevLightbox);
-    document.getElementById('btn-lightbox-next').addEventListener('click', nextLightbox);
+    const btnLbClose = document.getElementById('btn-lightbox-close');
+    const btnLbPrev = document.getElementById('btn-lightbox-prev');
+    const btnLbNext = document.getElementById('btn-lightbox-next');
+    if (btnLbClose) btnLbClose.addEventListener('click', closeLightbox);
+    if (btnLbPrev) btnLbPrev.addEventListener('click', prevLightbox);
+    if (btnLbNext) btnLbNext.addEventListener('click', nextLightbox);
+
     // Click outside to close lightbox
-    lightboxModal.addEventListener('click', (e) => {
-      if (e.target === lightboxModal) closeLightbox();
-    });
+    if (lightboxModal) {
+      lightboxModal.addEventListener('click', (e) => {
+        if (e.target === lightboxModal) closeLightbox();
+      });
 
-    // Touch Swipe Support for Lightbox
-    let touchStartX = 0;
-    let touchEndX = 0;
+      // Touch Swipe Support for Lightbox
+      let touchStartX = 0;
+      let touchEndX = 0;
 
-    function handleLightboxSwipe() {
-      const swipeThreshold = 50; // minimum swipe distance in pixels
-      if (touchEndX < touchStartX - swipeThreshold) {
-        nextLightbox(); // Swipe left -> Next image
-      } else if (touchEndX > touchStartX + swipeThreshold) {
-        prevLightbox(); // Swipe right -> Previous image
+      function handleLightboxSwipe() {
+        const swipeThreshold = 50; // minimum swipe distance in pixels
+        if (touchEndX < touchStartX - swipeThreshold) {
+          nextLightbox(); // Swipe left -> Next image
+        } else if (touchEndX > touchStartX + swipeThreshold) {
+          prevLightbox(); // Swipe right -> Previous image
+        }
       }
+
+      lightboxModal.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+      }, { passive: true });
+
+      lightboxModal.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleLightboxSwipe();
+      }, { passive: true });
     }
-
-    lightboxModal.addEventListener('touchstart', (e) => {
-      touchStartX = e.changedTouches[0].screenX;
-    }, { passive: true });
-
-    lightboxModal.addEventListener('touchend', (e) => {
-      touchEndX = e.changedTouches[0].screenX;
-      handleLightboxSwipe();
-    }, { passive: true });
 
     // Keyboard navigation for lightbox
     document.addEventListener('keydown', (e) => {
-      if (lightboxModal.classList.contains('active')) {
+      if (lightboxModal && lightboxModal.classList.contains('active')) {
         if (e.key === 'ArrowLeft') {
           prevLightbox();
         } else if (e.key === 'ArrowRight') {
@@ -653,14 +662,24 @@ document.addEventListener('DOMContentLoaded', () => {
     // RSVP Modal Toggles
     const rsvpModal = document.getElementById('rsvp-modal');
     const rsvpDetails = document.getElementById('rsvp-attendance-details');
+    const btnRsvpOpen = document.getElementById('btn-rsvp-open');
+    const btnRsvpClose = document.getElementById('btn-rsvp-close');
+    const btnRsvpCancel = document.getElementById('btn-rsvp-cancel');
+    const btnRsvpSubmit = document.getElementById('btn-rsvp-submit');
     
-    document.getElementById('btn-rsvp-open').addEventListener('click', () => {
-      rsvpModal.classList.add('active');
-      if (rsvpDetails) rsvpDetails.style.display = 'block';
-    });
+    if (btnRsvpOpen && rsvpModal) {
+      btnRsvpOpen.addEventListener('click', () => {
+        rsvpModal.classList.add('active');
+        if (rsvpDetails) rsvpDetails.style.display = 'block';
+      });
+    }
     
-    document.getElementById('btn-rsvp-close').addEventListener('click', () => rsvpModal.classList.remove('active'));
-    document.getElementById('btn-rsvp-cancel').addEventListener('click', () => rsvpModal.classList.remove('active'));
+    if (btnRsvpClose && rsvpModal) {
+      btnRsvpClose.addEventListener('click', () => rsvpModal.classList.remove('active'));
+    }
+    if (btnRsvpCancel && rsvpModal) {
+      btnRsvpCancel.addEventListener('click', () => rsvpModal.classList.remove('active'));
+    }
     
     // Toggle details on attendance radio change
     const attendRadios = document.getElementsByName('rsvp_attend');
@@ -675,84 +694,106 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     
     // RSVP Submit
-    document.getElementById('btn-rsvp-submit').addEventListener('click', () => {
-      const form = document.getElementById('rsvp-form');
-      if (!form.reportValidity()) return;
+    if (btnRsvpSubmit && rsvpModal) {
+      btnRsvpSubmit.addEventListener('click', () => {
+        const form = document.getElementById('rsvp-form');
+        if (!form || !form.reportValidity()) return;
 
-      const side = form.elements['rsvp_side'].value;
-      const attend = form.elements['rsvp_attend'].value;
-      const name = document.getElementById('rsvp_name').value;
-      
-      const count = attend === 'absent' ? 0 : document.getElementById('rsvp_count').value;
-      const meal = attend === 'absent' ? 'no' : form.elements['rsvp_meal'].value;
-      const message = document.getElementById('rsvp_message').value;
+        const side = form.elements['rsvp_side'] ? form.elements['rsvp_side'].value : 'groom';
+        const attend = form.elements['rsvp_attend'] ? form.elements['rsvp_attend'].value : 'attend';
+        const name = document.getElementById('rsvp_name') ? document.getElementById('rsvp_name').value : '';
+        
+        const count = attend === 'absent' ? 0 : (document.getElementById('rsvp_count') ? document.getElementById('rsvp_count').value : 1);
+        const meal = attend === 'absent' ? 'no' : (form.elements['rsvp_meal'] ? form.elements['rsvp_meal'].value : 'yes');
+        const message = document.getElementById('rsvp_message') ? document.getElementById('rsvp_message').value : '';
 
-      submitRSVP(side, name, attend, count, meal, message);
-      form.reset();
-      rsvpModal.classList.remove('active');
-    });
+        submitRSVP(side, name, attend, count, meal, message);
+        form.reset();
+        rsvpModal.classList.remove('active');
+      });
+    }
 
     // Guestbook Modal Toggles
     const gbModal = document.getElementById('guestbook-modal');
-    document.getElementById('btn-guestbook-open').addEventListener('click', () => gbModal.classList.add('active'));
-    document.getElementById('btn-guestbook-close').addEventListener('click', () => gbModal.classList.remove('active'));
-    document.getElementById('btn-guestbook-cancel').addEventListener('click', () => gbModal.classList.remove('active'));
+    const btnGbOpen = document.getElementById('btn-guestbook-open');
+    const btnGbClose = document.getElementById('btn-guestbook-close');
+    const btnGbCancel = document.getElementById('btn-guestbook-cancel');
+    const btnGbSubmit = document.getElementById('btn-guestbook-submit');
+
+    if (btnGbOpen && gbModal) {
+      btnGbOpen.addEventListener('click', () => gbModal.classList.add('active'));
+    }
+    if (btnGbClose && gbModal) {
+      btnGbClose.addEventListener('click', () => gbModal.classList.remove('active'));
+    }
+    if (btnGbCancel && gbModal) {
+      btnGbCancel.addEventListener('click', () => gbModal.classList.remove('active'));
+    }
 
     // Guestbook Submit
-    document.getElementById('btn-guestbook-submit').addEventListener('click', () => {
-      const form = document.getElementById('guestbook-form');
-      if (!form.reportValidity()) return;
+    if (btnGbSubmit && gbModal) {
+      btnGbSubmit.addEventListener('click', () => {
+        const form = document.getElementById('guestbook-form');
+        if (!form || !form.reportValidity()) return;
 
-      const name = document.getElementById('gb_name').value;
-      const password = document.getElementById('gb_password').value;
-      const message = document.getElementById('gb_message').value;
+        const name = document.getElementById('gb_name') ? document.getElementById('gb_name').value : '';
+        const password = document.getElementById('gb_password') ? document.getElementById('gb_password').value : '';
+        const message = document.getElementById('gb_message') ? document.getElementById('gb_message').value : '';
 
-      addGuestbookEntry(name, password, message);
-      form.reset();
-      gbModal.classList.remove('active');
-    });
+        addGuestbookEntry(name, password, message);
+        form.reset();
+        gbModal.classList.remove('active');
+      });
+    }
 
     // Share buttons
-    document.getElementById('btn-share-link').addEventListener('click', () => {
-      copyToClipboard(window.location.href, '');
-    });
+    const btnShareLink = document.getElementById('btn-share-link');
+    const btnShareNative = document.getElementById('btn-share-native');
 
-    document.getElementById('btn-share-native').addEventListener('click', () => {
-      if (configData && configData.kakao_app_key && window.Kakao && window.Kakao.isInitialized()) {
-        window.Kakao.Share.sendDefault({
-          objectType: 'feed',
-          content: {
-            title: '신윤호 🤍 이다연 결혼식에 초대합니다',
-            description: '2027년 1월 24일 일요일 오후 1시 10분 / 여의도 웨딩컨벤션',
-            imageUrl: 'https://unoshin.github.io/wedding-card/images/final/new_main.jpg',
-            link: {
-              mobileWebUrl: window.location.href,
-              webUrl: window.location.href,
-            },
-          },
-          buttons: [
-            {
-              title: '모바일 청첩장 보기',
+    if (btnShareLink) {
+      btnShareLink.addEventListener('click', () => {
+        copyToClipboard(window.location.href, '');
+      });
+    }
+
+    if (btnShareNative) {
+      btnShareNative.addEventListener('click', () => {
+        if (configData && configData.kakao_app_key && window.Kakao && window.Kakao.isInitialized()) {
+          window.Kakao.Share.sendDefault({
+            objectType: 'feed',
+            content: {
+              title: `${configData.groom.firstName} 🤍 ${configData.bride.firstName} 결혼식에 초대합니다`,
+              description: `${formatWeddingDate(configData.wedding.date)} / ${configData.wedding.place}`,
+              imageUrl: 'https://unoshin.github.io/wedding-card/images/final/new_main.jpg',
               link: {
                 mobileWebUrl: window.location.href,
                 webUrl: window.location.href,
               },
             },
-          ],
-        });
-      } else if (navigator.share) {
-        navigator.share({
-          title: '신윤호 🤍 이다연 결혼식에 초대합니다',
-          text: '2027년 1월 24일 일요일 오후 1시 10분 / 여의도 웨딩컨벤션',
-          url: window.location.href
-        }).catch(err => {
-          console.log('Share failed:', err);
+            buttons: [
+              {
+                title: '모바일 청첩장 보기',
+                link: {
+                  mobileWebUrl: window.location.href,
+                  webUrl: window.location.href,
+                },
+              },
+            ],
+          });
+        } else if (navigator.share) {
+          navigator.share({
+            title: `${configData.groom.firstName} 🤍 ${configData.bride.firstName} 결혼식에 초대합니다`,
+            text: `${formatWeddingDate(configData.wedding.date)} / ${configData.wedding.place}`,
+            url: window.location.href,
+          }).catch(err => {
+            console.log('Share failed:', err);
+            copyToClipboard(window.location.href, '');
+          });
+        } else {
           copyToClipboard(window.location.href, '');
-        });
-      } else {
-        copyToClipboard(window.location.href, '');
-      }
-    });
+        }
+      });
+    }
   }
 
   // Helpers

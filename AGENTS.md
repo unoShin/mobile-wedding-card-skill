@@ -8,14 +8,14 @@ This repository provides an agent-agnostic skill and scaffolding toolkit for bui
 
 When a user asks you to create, scaffold, or customize a mobile wedding card:
 
-1. **Interactive Customization**:
+1. **Interactive Customization for Couples**:
    - Act as a thoughtful, friendly pair programmer and wedding planner.
-   - Do NOT just generate dummy text blindly. Ask the user for their wedding information or offer to run `npm run init`:
+   - Do NOT just generate dummy text blindly. Ask the couple for their preferred sections and details, or offer to run `npm run init`:
+     - 🧩 **Sections to include**: Calendar & D-Day, Photo Gallery, Location & Map, Accounts Accordion, RSVP Survey, Guestbook, Share, Falling Petals.
      - 🤵 **Groom & 👰 Bride**: Names, phone numbers, parents' names and deceased status.
      - 📅 **Schedule**: Date, time, venue, hall name, address.
-     - 💳 **Accounts**: Bank accounts for groom and bride side.
+     - 💳 **Accounts**: Bank accounts for groom and bride side (if accounts section is enabled).
      - 🎨 **Theme**: Romantic Rose (Default), Classic Navy & Gold, or Modern Pure Monochrome.
-     - 🌸 **Ambient Effect**: Falling petals animation toggle.
 2. **Project Generation**:
    - Run `node scripts/scaffold.js [target-directory]` or run `node scripts/init.js [target-directory]`.
    - Update `data/config.json` with the user's specific information.

@@ -21,16 +21,24 @@ When a user requests to create or customize a mobile wedding card, choose the ap
 
 ### Mode A: Interactive Agent Chat Interview (Recommended for conversational AI)
 If the user interacts in chat:
-1. **Interview the User**: Gather the essential details in an organized, friendly manner:
+1. **Interview the Couple**: Gather their desired sections and details in an organized, friendly manner:
+   - **Preferred Sections**: Ask which components they want to include:
+     - 📅 Calendar & D-Day Countdown
+     - 🖼️ Photo Gallery & Lightbox
+     - 🗺️ Location & Map/Transit Guidance
+     - 💳 Bank Accounts (Accordion)
+     - 💌 RSVP Attendance Survey
+     - 💬 Guestbook Board
+     - 🔗 Share Buttons
+     - 🌸 Falling Petals Animation
    - **Groom & Bride**: Names, phone numbers, parents' names & deceased status.
    - **Wedding Schedule**: Date & time (e.g. `2027-01-24 13:10`), Venue name, Hall name, and Address.
-   - **Bank Accounts**: Groom & bride side bank names, account numbers, and account holders.
+   - **Bank Accounts**: (If accounts section is selected) Groom & bride side bank names, account numbers, and account holders.
    - **Visual Theme**: 
      - *1. Romantic Rose (Default)*: Soft pink & warm beige.
      - *2. Classic Elegance*: Deep navy & champagne gold.
      - *3. Modern Pure*: Minimalist black & white.
-   - **Effects**: Falling flower petals animation (`petals.js`) on/off.
-2. **Scaffold & Apply**: Copy templates from `templates/` to the target directory and write `data/config.json` with the gathered values.
+2. **Scaffold & Apply**: Copy templates from `templates/` to the target directory, retain only the selected sections in `index.html`, and write `data/config.json` with the gathered values.
 3. **Verify & QA**: Run `npm test` (`node test_render_jsdom.js`) to ensure zero blank-page errors.
 
 ### Mode B: Interactive CLI Wizard (`scripts/init.js`)
