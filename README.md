@@ -114,27 +114,29 @@ Antigravity, Cursor, Claude Code, Windsurf 등 AI 코딩 비서에게 청첩장 
 ## 📋 제작 및 배포 워크플로우 (Production Workflow)
 
 ```mermaid
-flowchart LR
-    %% Subgraphs for 3 distinct phases
+flowchart TD
+    %% Phase 1: 맞춤 프로젝트 생성
     subgraph P1 ["<b>🌱 STEP 1. 프로젝트 맞춤 생성</b>"]
         direction TB
-        A["<b>💍 대화형 위저드 실행</b><br/><code>npm run init ./my-card</code><br/><i>섹션 선택 · 부부 정보 · 컬러 테마</i>"]
-        B["<b>📦 의존성 패키지 설치</b><br/><code>npm install</code><br/><i>이미지 압축 & JSDOM 테스팅 세팅</i>"]
+        A["<b>💍 대화형 마법사 실행</b><br/><code>npm run init ./my-wedding-card</code><br/><i>원하는 섹션(1~9) 선택 · 예비부부 정보 · 감성 컬러 테마 지정</i>"]
+        B["<b>📦 의존성 패키지 설치</b><br/><code>cd ./my-wedding-card && npm install</code><br/><i>초고화질 이미지 압축 엔진 및 JSDOM 검증 환경 자동 구성</i>"]
         A --> B
     end
 
-    subgraph P2 ["<b>🎨 STEP 2. 사진 & 커스텀</b>"]
+    %% Phase 2: 사진 및 커스텀
+    subgraph P2 ["<b>🎨 STEP 2. 사진 추가 & 커스텀</b>"]
         direction TB
-        C["<b>🖼️ 웨딩 사진 추가</b><br/><code>images/final/</code><br/><i>메인 및 갤러리 사진 배치</i>"]
-        D["<b>⚡ 사진 자동 최적화</b><br/><code>node optimize_images.js</code><br/><i>MozJPEG 고화질 무손실 자동 압축</i>"]
-        E["<b>💌 구글 시트 연동</b><br/><code>data/config.json</code><br/><i>RSVP 설문 & 축하 방명록 URL</i>"]
+        C["<b>🖼️ 웨딩 사진 폴더에 넣기</b><br/><code>images/final/</code><br/><i>메인 대표 사진(new_main.jpg) 및 갤러리 사진(01~15.jpg)</i>"]
+        D["<b>⚡ 사진 자동 최적화 실행</b><br/><code>node optimize_images.js</code><br/><i>MozJPEG 무손실 압축으로 모바일 로딩 속도 극대화</i>"]
+        E["<b>💌 구글 시트 백엔드 연동</b><br/><code>data/config.json</code><br/><i>참석 여부(RSVP) 설문 및 축하 방명록 Google Apps Script URL 연결</i>"]
         C --> D --> E
     end
 
-    subgraph P3 ["<b>🚀 STEP 3. 품질 검증 & 무료 배포</b>"]
+    %% Phase 3: 품질 검증 및 배포
+    subgraph P3 ["<b>🚀 STEP 3. 무결성 검증 & 무료 배포</b>"]
         direction TB
-        F["<b>🛡️ 백화 현상 사전 검증</b><br/><code>npm test</code><br/><i>JSDOM 기반 렌더링 무결성 테스트</i>"]
-        G["<b>🌸 GitHub Pages 즉시 배포</b><br/><code>./deploy.sh</code><br/><i>영구 무료 호스팅 & 카카오톡 공유</i>"]
+        F["<b>🛡️ 백화 현상 사전 검증 테스트</b><br/><code>npm test</code><br/><i>JSDOM 기반 렌더링 무결성 검증으로 하객 화면 오류 완벽 차단</i>"]
+        G["<b>🌸 GitHub Pages 영구 무료 배포</b><br/><code>./deploy.sh</code><br/><i>초고속 무료 웹 호스팅 완료 & 카카오톡 모바일 공유 시작</i>"]
         F --> G
     end
 
@@ -142,9 +144,9 @@ flowchart LR
     E ==> F
 
     %% Custom High-Craft Styling
-    classDef stepPink fill:#fff5f6,stroke:#d099a1,stroke-width:2px,color:#222,rx:8px,ry:8px;
-    classDef stepGold fill:#fbf8f2,stroke:#c5a059,stroke-width:2px,color:#222,rx:8px,ry:8px;
-    classDef stepBlue fill:#f4f8fb,stroke:#4a90e2,stroke-width:2px,color:#222,rx:8px,ry:8px;
+    classDef stepPink fill:#fff5f6,stroke:#d099a1,stroke-width:2px,color:#222,rx:10px,ry:10px;
+    classDef stepGold fill:#fbf8f2,stroke:#c5a059,stroke-width:2px,color:#222,rx:10px,ry:10px;
+    classDef stepBlue fill:#f4f8fb,stroke:#4a90e2,stroke-width:2px,color:#222,rx:10px,ry:10px;
 
     class A,B stepPink;
     class C,D,E stepGold;
